@@ -19,14 +19,8 @@ public class GallowsArtist {
         this.NUMBER_OF_ATTEMPTS = numberOfAttempts;
     }
 
-    private void clearConsole() {
-        //TODO: implement the clearConsole method
-        //not implemented yet
-    }
-
     public String getCurrGallowsState(int currentAttemptNumber) {
         //TODO: make implementation if the NUMBER_OF_ATTEMPTS != steps.size()
-        clearConsole();
         if (currentAttemptNumber >= steps.size()) {
             return "";
         }
