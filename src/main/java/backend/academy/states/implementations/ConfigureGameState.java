@@ -27,10 +27,14 @@ public class ConfigureGameState implements GameState {
         }
         consoleInteractor.writeMessage("\nВведите номер категории: ");
         consoleInteractor.flushBuffer();
-
         Category category = Category.getCategory(consoleInteractor.readMessage());
 
-        consoleInteractor.writeMessage("Введите уровень сложности: ");
+        consoleInteractor.writeMessage("Доступные уровни сложности слова");
+        List<String> availableLevels = Level.getLevelAsStringList();
+        for (int i = 0; i < availableLevels.size(); i++) {
+            consoleInteractor.writeMessage("\n" + "[" + (i + 1) + "]" + availableLevels.get(i));
+        }
+        consoleInteractor.writeMessage("\nВведите номер уровня сложности: ");
         consoleInteractor.flushBuffer();
         Level level = Level.getLevel(consoleInteractor.readMessage());
 
