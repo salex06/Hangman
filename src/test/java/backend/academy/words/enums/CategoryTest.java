@@ -1,11 +1,13 @@
 package backend.academy.words.enums;
 
 import backend.academy.words.CategoryLevel;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
 import static backend.academy.words.enums.Category.getCategory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,7 +23,17 @@ class CategoryTest {
 
     @ParameterizedTest
     @ValueSource(strings = {"4", "0", "-1", "", " ", "\n", "\t"})
-    void testGetRandomCategoryIfActualStringIsIncorrect(String actualString){
+    void testGetRandomCategoryIfActualStringIsIncorrect(String actualString) {
         assertThat(Category.getCategory(actualString)).isInstanceOf(Category.class);
+    }
+
+    @Test
+    @DisplayName("Ensure getting a list of the categories works")
+    void ensureGettingCategoriesListWorks() {
+        List<String> expected = List.of("PROGRAMMING", "SPORT", "MUSIC");
+
+        List<String> actual = Category.getCategoryAsStringList();
+
+        assertEquals(expected, actual);
     }
 }

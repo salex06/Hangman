@@ -1,6 +1,7 @@
 package backend.academy.words.enums;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +16,14 @@ public enum Category {
 
     public static Category randomCategory() {
         return VALUES.get(RANDOM.nextInt(SIZE));
+    }
+
+    public static List<String> getCategoryAsStringList() {
+        List<String> categoriesList = new ArrayList<>(SIZE);
+        for (Category category : values()) {
+            categoriesList.add(category.name());
+        }
+        return categoriesList;
     }
 
     public static Category getCategory(String stringOrdinal) {
