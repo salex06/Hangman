@@ -6,7 +6,7 @@ import backend.academy.util.ConsoleInteractor;
 import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
 import java.io.IOException;
-
+import java.util.List;
 
 public class ConfigureGameState implements GameState {
     boolean gameIsFinished = false;
@@ -20,8 +20,14 @@ public class ConfigureGameState implements GameState {
     public void processState(GameSession gameSession) throws IOException {
         ConsoleInteractor consoleInteractor = gameSession.consoleInteractor();
 
-        consoleInteractor.writeMessage("Введите категорию: ");
+        consoleInteractor.writeMessage("Доступные категории");
+        List<String> availableCategories = Category.getCategoryAsStringList();
+        for (int i = 0; i < availableCategories.size(); i++) {
+            consoleInteractor.writeMessage("\n" + "[" + (i + 1) + "]" + availableCategories.get(i));
+        }
+        consoleInteractor.writeMessage("\nВведите номер категории: ");
         consoleInteractor.flushBuffer();
+
         Category category = Category.getCategory(consoleInteractor.readMessage());
 
         consoleInteractor.writeMessage("Введите уровень сложности: ");
