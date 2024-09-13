@@ -40,6 +40,7 @@ public class ConfigureGameState implements GameState {
 
         gameSession.answer(gameSession.wordsStorage().getRandomWord(category, level));
 
+        consoleInteractor.clearConsole();
         nextState(gameSession);
     }
 
