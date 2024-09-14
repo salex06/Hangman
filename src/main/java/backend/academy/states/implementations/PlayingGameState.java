@@ -45,7 +45,7 @@ public class PlayingGameState implements GameState {
 
         if (currentLetter.length() == 1) {
             boolean manageStateDataResult =
-                manageStateData(gameSession.answer(), gameSession.NUMBER_OF_ATTEMPTS(), currentLetter);
+                manageStateData(gameSession.answer().value(), gameSession.NUMBER_OF_ATTEMPTS(), currentLetter);
             if (manageStateDataResult) {
                 nextState(gameSession);
             }

@@ -4,6 +4,7 @@ import backend.academy.game.interfaces.Session;
 import backend.academy.states.implementations.ConfigureGameState;
 import backend.academy.states.interfaces.GameState;
 import backend.academy.util.ConsoleInteractor;
+import backend.academy.words.Word;
 import backend.academy.words.WordsStorage;
 import java.io.IOException;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GameSession implements Session {
-    private String answer;
+    private Word answer;
     @SuppressWarnings({"all"})
     private int NUMBER_OF_ATTEMPTS;
     @Getter

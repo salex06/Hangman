@@ -13,7 +13,7 @@ public class ConfigureGameState implements GameState {
 
     @Override
     public void nextState(GameSession gameSession) {
-        gameSession.gameState(new PlayingGameState(gameSession.answer().length()));
+        gameSession.gameState(new PlayingGameState(gameSession.answer().value().length()));
     }
 
     @Override

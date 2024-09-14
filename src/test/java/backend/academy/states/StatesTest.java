@@ -4,6 +4,9 @@ import backend.academy.game.implementations.GameSession;
 import backend.academy.states.implementations.ConfigureGameState;
 import backend.academy.states.implementations.PlayingGameState;
 import backend.academy.states.implementations.ResultOfTheGameState;
+import backend.academy.words.Word;
+import backend.academy.words.enums.Category;
+import backend.academy.words.enums.Level;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +23,7 @@ public class StatesTest {
     @Test
     @DisplayName("States are changing successfully")
     void testStateChanges(){
-        gameSession.answer("demo");
+        gameSession.answer(new Word("demo", "hint", Category.SPORT, Level.EASY));
 
         assertThat(gameSession.gameState()).isInstanceOf(ConfigureGameState.class);
 
