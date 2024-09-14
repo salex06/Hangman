@@ -17,4 +17,8 @@ public class Word {
         this.category = category;
         this.level = level;
     }
+
+    @Override public String toString() {
+        return value;
+    }
 }
