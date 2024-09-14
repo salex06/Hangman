@@ -124,4 +124,15 @@ class PlayingGameStateTest {
         assertThat(pgs.currentAttemptNumber()).isEqualTo(6);
         assertThat(pgs.gameResult()).isEqualTo(false);
     }
+
+    @Test
+    @DisplayName("Ensure manageStateData works if user asked for a hint")
+    void ensureManageStateDataWorksIfUserAskedForAHint(){
+        String hintSymb = "-";
+        String answer = "gym";
+        pgs = new PlayingGameState(answer.length());
+        assertThat(pgs.needHint()).isFalse();
+        pgs.manageStateData(answer, NUMBER_OF_ATTEMPTS, hintSymb);
+        assertThat(pgs.needHint()).isTrue();
+    }
 }

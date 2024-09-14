@@ -11,6 +11,7 @@ import lombok.Setter;
 @Setter
 public class PlayingGameState implements GameState {
     private boolean gameIsFinished = false;
+    private boolean needHint = false;
     private int currentAttemptNumber;
     private StringBuilder attemptStringBuilder;
     private boolean gameResult;
@@ -37,6 +38,13 @@ public class PlayingGameState implements GameState {
         ));
 
         consoleInteractor.writeMessage("Слово: " + attemptStringBuilder.toString() + "\n");
+
+        if (needHint) {
+            consoleInteractor.writeMessage("Подсказка: " + gameSession.answer().hint() + "\n");
+        } else {
+            consoleInteractor.writeMessage("[-]ПОКАЗАТЬ ПОДСКАЗКУ\n");
+        }
+
         consoleInteractor.writeMessage("Введите букву: ");
 
         consoleInteractor.flushBuffer();
@@ -55,6 +63,10 @@ public class PlayingGameState implements GameState {
     }
 
     public boolean manageStateData(String answer, int numberOfAttempts, String currentLetter) {
+        if (currentLetter.equals(String.valueOf('-'))) {
+            needHint = true;
+            return false;
+        }
         if (!updateAttemptStringBuilder(answer, currentLetter.charAt(0))) {
             currentAttemptNumber++;
         }
