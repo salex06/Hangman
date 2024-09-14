@@ -34,7 +34,7 @@ class WordsStorageTest {
             Map.entry(new Word("programmingMedium1", "hint", Category.PROGRAMMING, Level.MEDIUM), new CategoryLevel(Category.PROGRAMMING, Level.MEDIUM)),
             Map.entry(new Word("programmingMedium2", "hint", Category.PROGRAMMING, Level.MEDIUM), new CategoryLevel(Category.PROGRAMMING, Level.MEDIUM)),
             Map.entry(new Word("programmingHard1", "hint", Category.PROGRAMMING, Level.HARD), new CategoryLevel(Category.PROGRAMMING, Level.HARD)),
-            Map.entry(new Word("programmingHard1", "hint", Category.PROGRAMMING, Level.HARD),new CategoryLevel(Category.PROGRAMMING, Level.HARD)),
+            Map.entry(new Word("programmingHard2", "hint", Category.PROGRAMMING, Level.HARD),new CategoryLevel(Category.PROGRAMMING, Level.HARD)),
             Map.entry(new Word("sportEasy1", "hint", Category.SPORT, Level.EASY), new CategoryLevel(Category.SPORT, Level.EASY)),
             Map.entry(new Word("sportEasy2", "hint", Category.SPORT, Level.EASY), new CategoryLevel(Category.SPORT, Level.EASY)),
             Map.entry(new Word("sportMedium1", "hint", Category.SPORT, Level.MEDIUM), new CategoryLevel(Category.SPORT, Level.MEDIUM)),
