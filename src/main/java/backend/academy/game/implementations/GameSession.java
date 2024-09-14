@@ -14,7 +14,9 @@ import lombok.Setter;
 public class GameSession implements Session {
     private String answer;
     @SuppressWarnings({"all"})
-    private final int NUMBER_OF_ATTEMPTS = 6;
+    private int NUMBER_OF_ATTEMPTS;
+    @Getter
+    private final static int MINIMAL_NUMBER_OF_ATTEMPTS = 6;
     private GameState gameState;
     private ConsoleInteractor consoleInteractor;
     private GallowsArtist gallowsArtist;
@@ -22,7 +24,7 @@ public class GameSession implements Session {
 
     public GameSession() {
         consoleInteractor = new ConsoleInteractor();
-        gallowsArtist = new GallowsArtist(NUMBER_OF_ATTEMPTS);
+        gallowsArtist = new GallowsArtist();
         gameState = new ConfigureGameState();
         wordsStorage = new WordsStorage();
     }

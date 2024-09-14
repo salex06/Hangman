@@ -32,7 +32,9 @@ public class PlayingGameState implements GameState {
         consoleInteractor.writeMessage("Максимальное количество попыток: " + gameSession.NUMBER_OF_ATTEMPTS() + "\n");
         consoleInteractor.writeMessage("Текущее количество попыток: " + currentAttemptNumber + "\n");
 
-        consoleInteractor.writeMessage(gameSession.gallowsArtist().getCurrGallowsState(currentAttemptNumber));
+        consoleInteractor.writeMessage(gameSession.gallowsArtist().getCurrGallowsState(
+            gameSession.NUMBER_OF_ATTEMPTS(), currentAttemptNumber
+        ));
 
         consoleInteractor.writeMessage("Слово: " + attemptStringBuilder.toString() + "\n");
         consoleInteractor.writeMessage("Введите букву: ");

@@ -20,6 +20,16 @@ public class ConfigureGameState implements GameState {
     public void processState(GameSession gameSession) throws IOException {
         ConsoleInteractor consoleInteractor = gameSession.consoleInteractor();
 
+        consoleInteractor.writeMessage("Выберите максимальное количество ошибок (от 6): ");
+        consoleInteractor.flushBuffer();
+        int numberOfAttempts = Integer.parseInt(consoleInteractor.readMessage());
+        if (numberOfAttempts < GameSession.MINIMAL_NUMBER_OF_ATTEMPTS()) {
+            throw new IllegalArgumentException(
+                "Количество возможных ошибок не менее " + GameSession.MINIMAL_NUMBER_OF_ATTEMPTS()
+            );
+        }
+        gameSession.NUMBER_OF_ATTEMPTS(numberOfAttempts);
+
         consoleInteractor.writeMessage("Доступные категории");
         List<String> availableCategories = Category.getCategoryAsStringList();
         for (int i = 0; i < availableCategories.size(); i++) {

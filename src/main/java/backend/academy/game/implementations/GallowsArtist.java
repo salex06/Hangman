@@ -5,10 +5,8 @@ import java.util.List;
 public class GallowsArtist {
     private static final int STEPS_NUMBER_OF_DRAWING_A_MAN = 6;
     private final List<String> steps;
-    @SuppressWarnings({"all"})
-    private final int NUMBER_OF_ATTEMPTS;
 
-    public GallowsArtist(int numberOfAttempts) {
+    public GallowsArtist() {
         steps = List.of(
             "|   \n",
             "|  o\n",
@@ -17,11 +15,10 @@ public class GallowsArtist {
             "|  o\n| /|\\\n",
             "|  o\n| /|\\\n| /\n",
             "|  o\n| /|\\\n| / \\\n");
-        this.NUMBER_OF_ATTEMPTS = numberOfAttempts;
     }
 
-    public String getCurrGallowsState(int currentAttemptNumber) {
-        int countExtraPiecesOfRope = Math.max(0, NUMBER_OF_ATTEMPTS - STEPS_NUMBER_OF_DRAWING_A_MAN);
+    public String getCurrGallowsState(int numberOfAttempts, int currentAttemptNumber) {
+        int countExtraPiecesOfRope = Math.max(0, numberOfAttempts - STEPS_NUMBER_OF_DRAWING_A_MAN);
         StringBuilder currentGallowsState = new StringBuilder("______\n|/ |\n");
         int countHeightOfGallows = 0;
         int neededPieces = Math.min(currentAttemptNumber, countExtraPiecesOfRope);
@@ -39,7 +36,7 @@ public class GallowsArtist {
                 }
             }
         }
-        while (countHeightOfGallows != NUMBER_OF_ATTEMPTS) {
+        while (countHeightOfGallows != numberOfAttempts) {
             currentGallowsState.append(steps.getFirst());
             countHeightOfGallows++;
         }
