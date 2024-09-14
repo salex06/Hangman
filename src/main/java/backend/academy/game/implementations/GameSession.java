@@ -10,12 +10,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
+@Setter
 public class GameSession implements Session {
-    @Setter
     private String answer;
     @SuppressWarnings({"all"})
     private final int NUMBER_OF_ATTEMPTS = 6;
-    @Setter
     private GameState gameState;
     private ConsoleInteractor consoleInteractor;
     private GallowsArtist gallowsArtist;
