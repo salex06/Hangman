@@ -31,11 +31,8 @@ public class GameSession implements Session {
     }
 
     public void start() throws IOException {
-        while (true) {
+        while (!gameState.gameIsFinished()) {
             gameState.processState(this);
-            if (gameState.gameIsFinished()) {
-                break;
-            }
         }
     }
 }
