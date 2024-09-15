@@ -14,10 +14,18 @@ public enum Category {
     private static final int SIZE = VALUES.size();
     private static final SecureRandom RANDOM = new SecureRandom();
 
+    /**
+     * Select random Category
+     * @return random Category type object from the enumeration
+     */
     public static Category randomCategory() {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 
+    /**
+     * Convert Category values to String values
+     * @return categoriesList - the List of Strings (names of Categories)
+     */
     public static List<String> getCategoryAsStringList() {
         List<String> categoriesList = new ArrayList<>(SIZE);
         for (Category category : values()) {
@@ -26,6 +34,14 @@ public enum Category {
         return categoriesList;
     }
 
+    /**
+     * Select category by its ordinal
+     * @throws IllegalArgumentException if stringOrdinal is a number, but it's either not positive or
+     * bigger than the number of the values in enumeration
+     * @param stringOrdinal number of the category in the enumeration
+     * @return random Category type object if stringOrdinal is blank;
+     * Category type object if stringOrdinal is a correct ordinal
+     */
     public static Category getCategory(String stringOrdinal) {
         if (stringOrdinal.isBlank()) {
             return Category.randomCategory();
