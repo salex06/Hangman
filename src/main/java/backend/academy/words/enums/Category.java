@@ -32,8 +32,8 @@ public enum Category {
         }
         int categoryOrdinal = Integer.parseInt(stringOrdinal);
         if (categoryOrdinal > Category.values().length || categoryOrdinal < 1) {
-            //it will be better to throw an Exception
-            return Category.randomCategory();
+            throw new IllegalArgumentException(
+                "Требуется число (или enter для случайной категории) от " + 1 + " до " + SIZE);
         }
         return Category.values()[categoryOrdinal - 1];
     }

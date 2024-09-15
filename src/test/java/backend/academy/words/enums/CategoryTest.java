@@ -22,7 +22,13 @@ class CategoryTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"4", "0", "-1", "", " ", "\n", "\t"})
+    @ValueSource(strings = {"4", "0", "-1"})
+    void testGetRandomCategoryIfCategoryNumberIsBiggerOrLowerThanItMust(String actualString) {
+        assertThrows(IllegalArgumentException.class, () -> Category.getCategory(actualString));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "\n", "\t"})
     void testGetRandomCategoryIfActualStringIsIncorrect(String actualString) {
         assertThat(Category.getCategory(actualString)).isInstanceOf(Category.class);
     }
