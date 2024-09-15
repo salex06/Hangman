@@ -31,8 +31,16 @@ public class GameSession implements Session {
     }
 
     public void start() throws IOException {
-        while (!gameState.gameIsFinished()) {
-            gameState.processState(this);
+        try {
+            while (!gameState.gameIsFinished()) {
+                try {
+                    gameState.processState(this);
+                } catch (IllegalArgumentException e) {
+                    consoleInteractor.writeMessage("Некорректные данные: " + e.getMessage() + "\n");
+                }
+            }
+        } catch (Exception e) {
+            consoleInteractor.writeMessage("Неизвестная ошибка: " + e.getMessage() + "\n");
         }
     }
 }
