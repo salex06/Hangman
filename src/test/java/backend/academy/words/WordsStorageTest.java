@@ -49,8 +49,8 @@ class WordsStorageTest {
     @DisplayName("Check adding words to storage")
     @MethodSource("demoWordsSet")
     void testAddWordToStorage(Map.Entry<Word, CategoryLevel> current) {
-        Category c = current.getValue().c;
-        Level l = current.getValue().l;;
+        Category c = current.getValue().c();
+        Level l = current.getValue().l();
         Word value = current.getKey();
 
         wordsStorage.addWord(c, l, value);

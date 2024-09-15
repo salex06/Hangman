@@ -4,14 +4,7 @@ import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
 import java.util.Objects;
 
-public class CategoryLevel {
-    Category c;
-    Level l;
-
-    public CategoryLevel(Category c, Level l) {
-        this.c = c;
-        this.l = l;
-    }
+public record CategoryLevel(Category c, Level l) {
 
     @Override public boolean equals(Object o) {
         if (this == o) {
