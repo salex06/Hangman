@@ -41,6 +41,12 @@ public class WordsStorage {
         addWord(SPORT, HARD, new Word("weightlifter", "The man who lifts the barbell", SPORT, HARD));
     }
 
+    /**
+     * Returns a Word type object - a randomly selected word by level and category
+     * @param category The category (PROGRAMMING, SPORT, etc.) of the word
+     * @param level The level (EASY, MEDIUM, etc.) of the word
+     * @return a Word type object
+     */
     public Word getRandomWord(Category category, Level level) {
         if (storage.isEmpty()) {
             loadStorageWithDemoValues();
@@ -50,6 +56,13 @@ public class WordsStorage {
         return curr.get(secureRandom.nextInt(curr.size()));
     }
 
+    /**
+     * Add the Word object to the dictionary
+     * @param category Category (PROGRAMMING, SPORT, etc.) of the Word
+     * @param level Level (EASY, MEDIUM, etc.) of the Word
+     * @param value Word type object
+     * @return boolean type value - the result of adding (true - adding completed, false - adding failed)
+     */
     public boolean addWord(Category category, Level level, Word value) {
         CategoryLevel categoryLevel = new CategoryLevel(category, level);
         List<Word> lst = storage.get(categoryLevel);
@@ -64,5 +77,4 @@ public class WordsStorage {
         return true;
     }
 
-    //TODO: make reading from a file (csv)
 }
