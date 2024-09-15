@@ -32,8 +32,8 @@ public enum Level {
         }
         int levelOrdinal = Integer.parseInt(stringOrdinal);
         if (levelOrdinal > Level.values().length || levelOrdinal < 1) {
-            //it will be better to throw an Exception
-            return Level.randomLevel();
+            throw new IllegalArgumentException(
+                "Требуется число (или enter для случайного уровня) от " + 1 + " до " + SIZE);
         }
         return Level.values()[levelOrdinal - 1];
     }

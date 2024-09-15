@@ -19,7 +19,13 @@ class LevelTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"4", "0", "-1", "", " ", "\n", "\t"})
+    @ValueSource(strings = {"4", "0", "-1"})
+    void testGetRandomLevelIfLevelNumberIsBiggerOrLowerThanItMust(String actualString) {
+        assertThrows(IllegalArgumentException.class, () -> Level.getLevel(actualString));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"", " ", "\n", "\t"})
     void testGetRandomLevelIfActualStringIsIncorrect(String actualString) {
         assertThat(Level.getLevel(actualString)).isInstanceOf(Level.class);
     }
