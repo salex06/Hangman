@@ -8,14 +8,29 @@ import backend.academy.words.enums.Level;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * ConfigureGameState class implements GameState interface and handles the initial state of the game -
+ * setting up game settings
+ */
 public class ConfigureGameState implements GameState {
     private boolean gameIsFinished = false;
 
+    /**
+     * Sets the game state as PlayingGameState
+     *
+     * @param gameSession the current session of the game
+     */
     @Override
     public void nextState(GameSession gameSession) {
         gameSession.gameState(new PlayingGameState(gameSession.answer().value().length()));
     }
 
+    /**
+     * Handles the game configuration process
+     *
+     * @param gameSession the current session of the game
+     * @throws IOException if an input/output error has occurred
+     */
     @Override
     public void processState(GameSession gameSession) throws IOException {
         ConsoleInteractor consoleInteractor = gameSession.consoleInteractor();
@@ -54,6 +69,11 @@ public class ConfigureGameState implements GameState {
         nextState(gameSession);
     }
 
+    /**
+     * Check the game is finished (it's always false, because the game has not finished yet)
+     *
+     * @return boolean type variable "gameIsFinished"
+     */
     @Override
     public boolean gameIsFinished() {
         return gameIsFinished;
