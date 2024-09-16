@@ -35,31 +35,31 @@ public class ConfigureGameState implements GameState {
     public void processState(GameSession gameSession) throws IOException {
         ConsoleInteractor consoleInteractor = gameSession.consoleInteractor();
 
-        consoleInteractor.writeMessage("Выберите максимальное количество ошибок (от 6): ");
+        consoleInteractor.writeMessage("Select the maximum number of mistakes (at least 6): ");
         consoleInteractor.flushBuffer();
         int numberOfAttempts = Integer.parseInt(consoleInteractor.readMessage());
         if (numberOfAttempts < GameSession.MINIMAL_NUMBER_OF_ATTEMPTS()) {
             throw new IllegalArgumentException(
-                "Количество возможных ошибок не менее " + GameSession.MINIMAL_NUMBER_OF_ATTEMPTS()
+                "The number of possible mistakes is at least " + GameSession.MINIMAL_NUMBER_OF_ATTEMPTS()
             );
         }
         gameSession.NUMBER_OF_ATTEMPTS(numberOfAttempts);
 
-        consoleInteractor.writeMessage("Доступные категории");
+        consoleInteractor.writeMessage("Available categories");
         List<String> availableCategories = Category.getCategoryAsStringList();
         for (int i = 0; i < availableCategories.size(); i++) {
             consoleInteractor.writeMessage("\n" + "[" + (i + 1) + "]" + availableCategories.get(i));
         }
-        consoleInteractor.writeMessage("\nВведите номер категории: ");
+        consoleInteractor.writeMessage("\nEnter the category number: ");
         consoleInteractor.flushBuffer();
         Category category = Category.getCategory(consoleInteractor.readMessage());
 
-        consoleInteractor.writeMessage("Доступные уровни сложности слова");
+        consoleInteractor.writeMessage("Available difficulty levels of the word");
         List<String> availableLevels = Level.getLevelAsStringList();
         for (int i = 0; i < availableLevels.size(); i++) {
             consoleInteractor.writeMessage("\n" + "[" + (i + 1) + "]" + availableLevels.get(i));
         }
-        consoleInteractor.writeMessage("\nВведите номер уровня сложности: ");
+        consoleInteractor.writeMessage("\nEnter the level number: ");
         consoleInteractor.flushBuffer();
         Level level = Level.getLevel(consoleInteractor.readMessage());
 

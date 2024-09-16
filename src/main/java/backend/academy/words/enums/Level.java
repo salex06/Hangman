@@ -49,7 +49,7 @@ public enum Level {
         int levelOrdinal = Integer.parseInt(stringOrdinal);
         if (levelOrdinal > Level.values().length || levelOrdinal < 1) {
             throw new IllegalArgumentException(
-                "Требуется число (или enter для случайного уровня) от " + 1 + " до " + SIZE);
+                "A number is required (or enter for a random level) from " + 1 + " to " + SIZE);
         }
         return Level.values()[levelOrdinal - 1];
     }

@@ -51,12 +51,12 @@ public class GameSession implements Session {
                     gameState.processState(this);
                 } catch (IllegalArgumentException e) {
                     consoleInteractor.clearConsole();
-                    consoleInteractor.writeMessage("Некорректные данные: " + e.getMessage() + "\n");
+                    consoleInteractor.writeMessage("Incorrect data: " + e.getMessage() + "\n");
                 }
             }
         } catch (Exception e) {
             consoleInteractor.clearConsole();
-            consoleInteractor.writeMessage("Неизвестная ошибка: " + e.getMessage() + "\n");
+            consoleInteractor.writeMessage("Unknown error: " + e.getMessage() + "\n");
         }
     }
 }

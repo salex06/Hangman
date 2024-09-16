@@ -50,22 +50,22 @@ public class PlayingGameState implements GameState {
     public void processState(GameSession gameSession) throws IOException {
         ConsoleInteractor consoleInteractor = gameSession.consoleInteractor();
 
-        consoleInteractor.writeMessage("Максимальное количество попыток: " + gameSession.NUMBER_OF_ATTEMPTS() + "\n");
-        consoleInteractor.writeMessage("Текущее количество попыток: " + currentAttemptNumber + "\n");
+        consoleInteractor.writeMessage("Maximum number of attempts: " + gameSession.NUMBER_OF_ATTEMPTS() + "\n");
+        consoleInteractor.writeMessage("Current number of attempts: " + currentAttemptNumber + "\n");
 
         consoleInteractor.writeMessage(gameSession.gallowsArtist().getCurrGallowsState(
             gameSession.NUMBER_OF_ATTEMPTS(), currentAttemptNumber
         ));
 
-        consoleInteractor.writeMessage("Слово: " + attemptStringBuilder.toString() + "\n");
+        consoleInteractor.writeMessage("Word: " + attemptStringBuilder.toString() + "\n");
 
         if (needHint) {
-            consoleInteractor.writeMessage("Подсказка: " + gameSession.answer().hint() + "\n");
+            consoleInteractor.writeMessage("Hint: " + gameSession.answer().hint() + "\n");
         } else {
-            consoleInteractor.writeMessage("[-]ПОКАЗАТЬ ПОДСКАЗКУ\n");
+            consoleInteractor.writeMessage("[-]SHOW A HINT\n");
         }
 
-        consoleInteractor.writeMessage("Введите букву: ");
+        consoleInteractor.writeMessage("Enter a letter: ");
 
         consoleInteractor.flushBuffer();
 

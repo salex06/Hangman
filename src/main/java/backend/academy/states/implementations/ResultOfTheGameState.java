@@ -41,11 +41,11 @@ public class ResultOfTheGameState implements GameState {
     public void processState(GameSession gameSession) throws IOException {
         ConsoleInteractor consoleInteractor = gameSession.consoleInteractor();
         if (gameResult) {
-            consoleInteractor.writeMessage("Поздравляем! Вы победили!");
+            consoleInteractor.writeMessage("Congratulations, you have won!\n");
         } else {
-            consoleInteractor.writeMessage("К сожалению, вы проиграли!");
+            consoleInteractor.writeMessage("Unfortunately, you lost!\n");
         }
-        consoleInteractor.writeMessage("Загаданное слово: " + gameSession.answer());
+        consoleInteractor.writeMessage("The hidden word: " + gameSession.answer());
         consoleInteractor.flushBuffer();
         gameIsFinished = true;
     }

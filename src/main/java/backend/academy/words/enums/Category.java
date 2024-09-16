@@ -56,7 +56,7 @@ public enum Category {
         int categoryOrdinal = Integer.parseInt(stringOrdinal);
         if (categoryOrdinal > Category.values().length || categoryOrdinal < 1) {
             throw new IllegalArgumentException(
-                "Требуется число (или enter для случайной категории) от " + 1 + " до " + SIZE);
+                "A number is required (or enter for a random category) from " + 1 + " to " + SIZE);
         }
         return Category.values()[categoryOrdinal - 1];
     }
