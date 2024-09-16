@@ -10,6 +10,11 @@ import java.io.IOException;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The GameSession class implements a Session interface and represents a gaming session.
+ * This class contains all fields of information about the current session, the state of
+ * the game, other necessary classes such as console interactor, gallows artist, etc.
+ */
 @Getter
 @Setter
 public class GameSession implements Session {
@@ -23,6 +28,10 @@ public class GameSession implements Session {
     private GallowsArtist gallowsArtist;
     private WordsStorage wordsStorage;
 
+    /**
+     * The default constructor. Causes the creation of objects of the
+     * ConsoleInteractor, GallowsArtist classes, etc.
+     */
     public GameSession() {
         consoleInteractor = new ConsoleInteractor();
         gallowsArtist = new GallowsArtist();
@@ -30,6 +39,11 @@ public class GameSession implements Session {
         wordsStorage = new WordsStorage();
     }
 
+    /**
+     * The method that starts the game session. Handling exceptions for incorrect input
+     * and other errors.
+     * @throws IOException if an input/output error has occurred
+     */
     public void start() throws IOException {
         try {
             while (!gameState.gameIsFinished()) {
