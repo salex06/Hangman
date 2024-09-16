@@ -10,7 +10,7 @@ import java.io.IOException;
  * it finished (the user won or lost)
  */
 public class ResultOfTheGameState implements GameState {
-    boolean gameIsFinished = false;
+    private boolean gameIsFinished = false;
     private final boolean gameResult;
 
     /**

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ConfigureGameState implements GameState {
-    boolean gameIsFinished = false;
+    private boolean gameIsFinished = false;
 
     @Override
     public void nextState(GameSession gameSession) {
