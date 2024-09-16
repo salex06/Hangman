@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The Category enumeration stores information about available categories and
+ * several methods to get these types of categories in the right form
+ */
 public enum Category {
     PROGRAMMING, SPORT, MUSIC;
 
@@ -16,6 +20,7 @@ public enum Category {
 
     /**
      * Select random Category
+     *
      * @return random Category type object from the enumeration
      */
     public static Category randomCategory() {
@@ -24,6 +29,7 @@ public enum Category {
 
     /**
      * Convert Category values to String values
+     *
      * @return categoriesList - the List of Strings (names of Categories)
      */
     public static List<String> getCategoryAsStringList() {
@@ -35,12 +41,13 @@ public enum Category {
     }
 
     /**
-     * Select category by its ordinal
-     * @throws IllegalArgumentException if stringOrdinal is a number, but it's either not positive or
-     * bigger than the number of the values in enumeration
+     * Select category by its ordinal number
+     *
      * @param stringOrdinal number of the category in the enumeration
      * @return random Category type object if stringOrdinal is blank;
-     * Category type object if stringOrdinal is a correct ordinal
+     *     Category type object if stringOrdinal is a correct ordinal
+     * @throws IllegalArgumentException if stringOrdinal is a number, but it's either not positive or
+     *                                  bigger than the number of the values in enumeration
      */
     public static Category getCategory(String stringOrdinal) {
         if (stringOrdinal.isBlank()) {

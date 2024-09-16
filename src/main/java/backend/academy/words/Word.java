@@ -4,6 +4,14 @@ import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
 import java.util.Objects;
 
+/**
+ * A Word record stores information about the word
+ *
+ * @param value    the word itself
+ * @param hint     a hint to the word
+ * @param category word category
+ * @param level    level category
+ */
 public record Word(String value, String hint, Category category, Level level) {
 
     @Override public String toString() {

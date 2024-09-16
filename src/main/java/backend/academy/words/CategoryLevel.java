@@ -4,6 +4,12 @@ import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
 import java.util.Objects;
 
+/**
+ * The CategoryLevel record stores a category-level pair for
+ * easier interaction with words
+ * @param c word category
+ * @param l word level
+ */
 public record CategoryLevel(Category c, Level l) {
 
     @Override public boolean equals(Object o) {

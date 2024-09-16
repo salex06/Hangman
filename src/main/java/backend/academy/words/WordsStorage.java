@@ -15,6 +15,10 @@ import static backend.academy.words.enums.Level.EASY;
 import static backend.academy.words.enums.Level.HARD;
 import static backend.academy.words.enums.Level.MEDIUM;
 
+/**
+ * The WordsStorage keeps a dictionary of the words and methods
+ * by which you can get and add different words
+ */
 @Getter
 public class WordsStorage {
     private final Map<CategoryLevel, List<Word>> storage;
@@ -43,8 +47,9 @@ public class WordsStorage {
 
     /**
      * Returns a Word type object - a randomly selected word by level and category
+     *
      * @param category The category (PROGRAMMING, SPORT, etc.) of the word
-     * @param level The level (EASY, MEDIUM, etc.) of the word
+     * @param level    The level (EASY, MEDIUM, etc.) of the word
      * @return a Word type object
      */
     public Word getRandomWord(Category category, Level level) {
@@ -58,9 +63,10 @@ public class WordsStorage {
 
     /**
      * Add the Word object to the dictionary
+     *
      * @param category Category (PROGRAMMING, SPORT, etc.) of the Word
-     * @param level Level (EASY, MEDIUM, etc.) of the Word
-     * @param value Word type object
+     * @param level    Level (EASY, MEDIUM, etc.) of the Word
+     * @param value    Word type object
      * @return boolean type value - the result of adding (true - adding completed, false - adding failed)
      */
     public boolean addWord(Category category, Level level, Word value) {

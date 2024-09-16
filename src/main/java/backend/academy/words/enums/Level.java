@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * The Level enumeration stores information about available levels and
+ * several methods to get these types of levels in the right form
+ */
 public enum Level {
     EASY, MEDIUM, HARD;
 
@@ -18,6 +22,11 @@ public enum Level {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 
+    /**
+     * Convert Level objects to String objects
+     *
+     * @return List of String type objects - names of level constants
+     */
     public static List<String> getLevelAsStringList() {
         List<String> levelsList = new ArrayList<>(SIZE);
         for (Level level : values()) {
@@ -26,6 +35,13 @@ public enum Level {
         return levelsList;
     }
 
+    /**
+     * Allow get Level type object by its ordinal number
+     *
+     * @param stringOrdinal the constant number of the enumeration in order
+     * @return Level type object
+     * @throws IllegalArgumentException if user entered the wrong number of the constant of the enumeration
+     */
     public static Level getLevel(String stringOrdinal) {
         if (stringOrdinal.isBlank()) {
             return Level.randomLevel();
