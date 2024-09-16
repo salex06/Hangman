@@ -1,4 +1,4 @@
-package backend.academy.game.implementations;
+package backend.academy.util;
 
 import java.util.List;
 

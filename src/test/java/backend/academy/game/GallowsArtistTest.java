@@ -1,6 +1,6 @@
 package backend.academy.game;
 
-import backend.academy.game.implementations.GallowsArtist;
+import backend.academy.util.GallowsArtist;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;

@@ -4,6 +4,7 @@ import backend.academy.game.interfaces.Session;
 import backend.academy.states.implementations.ConfigureGameState;
 import backend.academy.states.interfaces.GameState;
 import backend.academy.util.ConsoleInteractor;
+import backend.academy.util.GallowsArtist;
 import backend.academy.words.Word;
 import backend.academy.words.WordsStorage;
 import java.io.IOException;
