@@ -61,7 +61,7 @@ public class ConfigureGameState implements GameState {
         }
         consoleInteractor.writeMessage("\nEnter the level number: ");
         consoleInteractor.flushBuffer();
-        Level level = Level.getLevel(consoleInteractor.readMessage());
+        Level level = Level.getLevel(consoleInteractor.readMessage()).orElseGet(Level::randomLevel);
 
         gameSession.answer(gameSession.wordsStorage().getRandomWord(category, level));
 

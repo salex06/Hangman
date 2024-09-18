@@ -1,12 +1,12 @@
 package backend.academy.words.enums;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
+import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,8 +14,13 @@ class LevelTest {
     @ParameterizedTest
     @CsvSource({"1, EASY", "2, MEDIUM", "3, HARD"})
     void testGetLevelIfActualStringIsCorrect(String actualString, Level expectedLevel) {
-        Level actual = Level.getLevel(actualString);
-        assertEquals(expectedLevel, actual);
+        Optional<Level> actual = Level.getLevel(actualString);
+
+        if(actual.isPresent()) {
+            assertEquals(expectedLevel, actual.orElseThrow());
+        }else {
+            assert false;
+        }
     }
 
     @ParameterizedTest
@@ -27,7 +32,7 @@ class LevelTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "\n", "\t"})
     void testGetRandomLevelIfActualStringIsIncorrect(String actualString) {
-        assertThat(Level.getLevel(actualString)).isInstanceOf(Level.class);
+        assertEquals(Optional.empty(), Level.getLevel(actualString));
     }
 
     @Test

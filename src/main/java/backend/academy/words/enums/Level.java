@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The Level enumeration stores information about available levels and
@@ -39,18 +40,18 @@ public enum Level {
      * Allow get Level type object by its ordinal number
      *
      * @param stringOrdinal the constant number of the enumeration in order
-     * @return Level type object
+     * @return Optional type object (Optional.empty() if the stringOrdinal is incorrect)
      * @throws IllegalArgumentException if user entered the wrong number of the constant of the enumeration
      */
-    public static Level getLevel(String stringOrdinal) {
+    public static Optional<Level> getLevel(String stringOrdinal) {
         if (stringOrdinal.isBlank()) {
-            return Level.randomLevel();
+            return Optional.empty();
         }
         int levelOrdinal = Integer.parseInt(stringOrdinal);
         if (levelOrdinal > Level.values().length || levelOrdinal < 1) {
             throw new IllegalArgumentException(
                 "A number is required (or enter for a random level) from " + 1 + " to " + SIZE);
         }
-        return Level.values()[levelOrdinal - 1];
+        return Optional.of(Level.values()[levelOrdinal - 1]);
     }
 }
