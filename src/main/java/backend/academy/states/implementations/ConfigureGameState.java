@@ -52,7 +52,7 @@ public class ConfigureGameState implements GameState {
         }
         consoleInteractor.writeMessage("\nEnter the category number: ");
         consoleInteractor.flushBuffer();
-        Category category = Category.getCategory(consoleInteractor.readMessage());
+        Category category = Category.getCategory(consoleInteractor.readMessage()).orElseGet(Category::randomCategory);
 
         consoleInteractor.writeMessage("Available difficulty levels of the word");
         List<String> availableLevels = Level.getLevelAsStringList();

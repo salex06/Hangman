@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * The Category enumeration stores information about available categories and
@@ -44,20 +45,19 @@ public enum Category {
      * Select category by its ordinal number
      *
      * @param stringOrdinal number of the category in the enumeration
-     * @return random Category type object if stringOrdinal is blank;
-     *     Category type object if stringOrdinal is a correct ordinal
+     * @return Optional type object (Optional.empty() if the stringOrdinal is incorrect)
      * @throws IllegalArgumentException if stringOrdinal is a number, but it's either not positive or
      *                                  bigger than the number of the values in enumeration
      */
-    public static Category getCategory(String stringOrdinal) {
+    public static Optional<Category> getCategory(String stringOrdinal) {
         if (stringOrdinal.isBlank()) {
-            return Category.randomCategory();
+            return Optional.empty();
         }
         int categoryOrdinal = Integer.parseInt(stringOrdinal);
         if (categoryOrdinal > Category.values().length || categoryOrdinal < 1) {
             throw new IllegalArgumentException(
                 "A number is required (or enter for a random category) from " + 1 + " to " + SIZE);
         }
-        return Category.values()[categoryOrdinal - 1];
+        return Optional.of(Category.values()[categoryOrdinal - 1]);
     }
 }
