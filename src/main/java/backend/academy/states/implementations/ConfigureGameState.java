@@ -6,7 +6,6 @@ import backend.academy.util.ConsoleInteractor;
 import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * ConfigureGameState class implements GameState interface and handles the initial state of the game -
@@ -46,18 +45,18 @@ public class ConfigureGameState implements GameState {
         gameSession.NUMBER_OF_ATTEMPTS(numberOfAttempts);
 
         consoleInteractor.writeMessage("Available categories");
-        List<String> availableCategories = Category.getCategoryAsStringList();
-        for (int i = 0; i < availableCategories.size(); i++) {
-            consoleInteractor.writeMessage("\n" + "[" + (i + 1) + "]" + availableCategories.get(i));
+        for (int i = 0; i < Category.values().length; i++) {
+            consoleInteractor.writeMessage(
+                "\n" + "[" + (i + 1) + "]" + Category.getCategory(String.valueOf(i + 1)).orElseThrow().name());
         }
         consoleInteractor.writeMessage("\nEnter the category number: ");
         consoleInteractor.flushBuffer();
         Category category = Category.getCategory(consoleInteractor.readMessage()).orElseGet(Category::randomCategory);
 
         consoleInteractor.writeMessage("Available difficulty levels of the word");
-        List<String> availableLevels = Level.getLevelAsStringList();
-        for (int i = 0; i < availableLevels.size(); i++) {
-            consoleInteractor.writeMessage("\n" + "[" + (i + 1) + "]" + availableLevels.get(i));
+        for (int i = 0; i < Level.values().length; i++) {
+            consoleInteractor.writeMessage(
+                "\n" + "[" + (i + 1) + "]" + Level.getLevel(String.valueOf(i + 1)).orElseThrow().name());
         }
         consoleInteractor.writeMessage("\nEnter the level number: ");
         consoleInteractor.flushBuffer();
