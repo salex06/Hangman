@@ -1,8 +1,8 @@
 package backend.academy.game.implementations;
 
-import backend.academy.game.interfaces.Session;
+import backend.academy.game.Session;
+import backend.academy.states.GameState;
 import backend.academy.states.implementations.ConfigureGameState;
-import backend.academy.states.interfaces.GameState;
 import backend.academy.util.ConsoleInteractor;
 import backend.academy.util.GallowsArtist;
 import backend.academy.words.Word;

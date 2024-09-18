@@ -1,7 +1,7 @@
 package backend.academy.states.implementations;
 
 import backend.academy.game.implementations.GameSession;
-import backend.academy.states.interfaces.GameState;
+import backend.academy.states.GameState;
 import backend.academy.util.ConsoleInteractor;
 import java.io.IOException;
 

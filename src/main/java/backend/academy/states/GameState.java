@@ -1,4 +1,4 @@
-package backend.academy.states.interfaces;
+package backend.academy.states;
 
 import backend.academy.game.implementations.GameSession;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package backend.academy.game.interfaces;
+package backend.academy.game;
 
 import java.io.IOException;
 
