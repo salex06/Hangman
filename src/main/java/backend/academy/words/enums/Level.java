@@ -1,7 +1,6 @@
 package backend.academy.words.enums;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -21,19 +20,6 @@ public enum Level {
 
     public static Level randomLevel() {
         return VALUES.get(RANDOM.nextInt(SIZE));
-    }
-
-    /**
-     * Convert Level objects to String objects
-     *
-     * @return List of String type objects - names of level constants
-     */
-    public static List<String> getLevelAsStringList() {
-        List<String> levelsList = new ArrayList<>(SIZE);
-        for (Level level : values()) {
-            levelsList.add(level.name());
-        }
-        return levelsList;
     }
 
     /**
