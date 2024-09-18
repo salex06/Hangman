@@ -1,7 +1,6 @@
 package backend.academy.words.enums;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -26,19 +25,6 @@ public enum Category {
      */
     public static Category randomCategory() {
         return VALUES.get(RANDOM.nextInt(SIZE));
-    }
-
-    /**
-     * Convert Category values to String values
-     *
-     * @return categoriesList - the List of Strings (names of Categories)
-     */
-    public static List<String> getCategoryAsStringList() {
-        List<String> categoriesList = new ArrayList<>(SIZE);
-        for (Category category : values()) {
-            categoriesList.add(category.name());
-        }
-        return categoriesList;
     }
 
     /**

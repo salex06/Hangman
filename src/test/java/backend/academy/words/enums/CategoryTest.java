@@ -1,12 +1,9 @@
 package backend.academy.words.enums;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,13 +33,4 @@ class CategoryTest {
         assertEquals(Optional.empty(), Category.getCategory(actualString));
     }
 
-    @Test
-    @DisplayName("Ensure getting a list of the categories works")
-    void ensureGettingCategoriesListWorks() {
-        List<String> expected = List.of("PROGRAMMING", "SPORT", "MUSIC");
-
-        List<String> actual = Category.getCategoryAsStringList();
-
-        assertEquals(expected, actual);
-    }
 }
