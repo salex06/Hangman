@@ -1,5 +1,7 @@
-package backend.academy.words;
+package backend.academy.words.implementations;
 
+import backend.academy.words.CategoryLevel;
+import backend.academy.words.Word;
 import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
 import java.security.SecureRandom;

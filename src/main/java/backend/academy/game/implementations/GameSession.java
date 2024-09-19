@@ -6,7 +6,7 @@ import backend.academy.states.implementations.ConfigureGameState;
 import backend.academy.util.implementations.ConsoleInteractor;
 import backend.academy.util.implementations.GallowsArtist;
 import backend.academy.words.Word;
-import backend.academy.words.WordsStorage;
+import backend.academy.words.implementations.WordsStorage;
 import java.io.IOException;
 import lombok.Getter;
 import lombok.Setter;
