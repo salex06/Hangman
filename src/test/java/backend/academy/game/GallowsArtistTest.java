@@ -1,12 +1,12 @@
 package backend.academy.game;
 
-import backend.academy.util.GallowsArtist;
+import backend.academy.util.implementations.GallowsArtist;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-import java.util.List;
-import java.util.Map;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GallowsArtistTest {
     public static List<Map.Entry<Integer, String>> data() {
