@@ -1,14 +1,12 @@
 package backend.academy.util.implementations;
 
 import backend.academy.util.IOHandler;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
+import java.io.PrintStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
 import lombok.Getter;
 
 /**
@@ -19,25 +17,25 @@ import lombok.Getter;
  */
 @Getter
 public class ConsoleInteractor implements IOHandler {
-    private final BufferedReader bufferedReader;
-    private final BufferedWriter bufferedWriter;
+    private final Scanner inputStream;
+    private final PrintStream outputStream;
 
     public ConsoleInteractor() {
-        bufferedReader = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
-        bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8));
+        inputStream = new Scanner(System.in, StandardCharsets.UTF_8);
+        outputStream = new PrintStream(System.out, true, StandardCharsets.UTF_8);
     }
 
     public ConsoleInteractor(InputStream inputStream, OutputStream outputStream) {
-        bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
+        this.inputStream = new Scanner(inputStream, StandardCharsets.UTF_8);
+        this.outputStream = new PrintStream(outputStream, true, StandardCharsets.UTF_8);
     }
 
     public void writeMessage(String message) throws IOException {
-        bufferedWriter.write(message);
+        outputStream.write(message.getBytes());
     }
 
     public String readMessage() throws IOException {
-        return bufferedReader.readLine();
+        return inputStream.nextLine();
     }
 
     /**
@@ -46,7 +44,7 @@ public class ConsoleInteractor implements IOHandler {
      * @throws IOException if a buffer flushing error has occurred
      */
     public void flushBuffer() throws IOException {
-        bufferedWriter.flush();
+        outputStream.flush();
     }
 
     /**
