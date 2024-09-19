@@ -1,5 +1,6 @@
 package backend.academy.util.implementations;
 
+import backend.academy.util.IOHandler;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import lombok.Getter;
  * System.in and System.out.
  */
 @Getter
-public class ConsoleInteractor {
+public class ConsoleInteractor implements IOHandler {
     private final BufferedReader bufferedReader;
     private final BufferedWriter bufferedWriter;
 
@@ -31,22 +32,10 @@ public class ConsoleInteractor {
         bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
     }
 
-    /**
-     * Writes data to a BufferedWriter
-     *
-     * @param message data for writing
-     * @throws IOException if an output error has occurred
-     */
     public void writeMessage(String message) throws IOException {
         bufferedWriter.write(message);
     }
 
-    /**
-     * Reads data from a bufferedReader
-     *
-     * @return user input
-     * @throws IOException if an input error has occurred
-     */
     public String readMessage() throws IOException {
         return bufferedReader.readLine();
     }
