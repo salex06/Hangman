@@ -2,7 +2,7 @@ package backend.academy.states.implementations;
 
 import backend.academy.game.implementations.GameSession;
 import backend.academy.states.GameState;
-import backend.academy.util.ConsoleInteractor;
+import backend.academy.util.implementations.ConsoleInteractor;
 import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
 import java.io.IOException;

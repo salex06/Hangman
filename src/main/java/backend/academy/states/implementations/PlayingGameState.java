@@ -2,7 +2,7 @@ package backend.academy.states.implementations;
 
 import backend.academy.game.implementations.GameSession;
 import backend.academy.states.GameState;
-import backend.academy.util.ConsoleInteractor;
+import backend.academy.util.implementations.ConsoleInteractor;
 import java.io.IOException;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,4 +1,4 @@
-package backend.academy.util;
+package backend.academy.util.implementations;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
