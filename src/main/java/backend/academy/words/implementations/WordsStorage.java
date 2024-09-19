@@ -1,6 +1,7 @@
 package backend.academy.words.implementations;
 
 import backend.academy.words.CategoryLevel;
+import backend.academy.words.IWordsStorage;
 import backend.academy.words.Word;
 import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
@@ -22,7 +23,7 @@ import static backend.academy.words.enums.Level.MEDIUM;
  * by which you can get and add different words
  */
 @Getter
-public class WordsStorage {
+public class WordsStorage implements IWordsStorage {
     private final Map<CategoryLevel, List<Word>> storage;
     private final SecureRandom secureRandom;
 
@@ -47,13 +48,6 @@ public class WordsStorage {
         addWord(SPORT, HARD, new Word("weightlifter", "The man who lifts the barbell", SPORT, HARD));
     }
 
-    /**
-     * Returns a Word type object - a randomly selected word by level and category
-     *
-     * @param category The category (PROGRAMMING, SPORT, etc.) of the word
-     * @param level    The level (EASY, MEDIUM, etc.) of the word
-     * @return a Word type object
-     */
     public Word getRandomWord(Category category, Level level) {
         if (storage.isEmpty()) {
             loadStorageWithDemoValues();
@@ -63,14 +57,6 @@ public class WordsStorage {
         return curr.get(secureRandom.nextInt(curr.size()));
     }
 
-    /**
-     * Add the Word object to the dictionary
-     *
-     * @param category Category (PROGRAMMING, SPORT, etc.) of the Word
-     * @param level    Level (EASY, MEDIUM, etc.) of the Word
-     * @param value    Word type object
-     * @return boolean type value - the result of adding (true - adding completed, false - adding failed)
-     */
     public boolean addWord(Category category, Level level, Word value) {
         CategoryLevel categoryLevel = new CategoryLevel(category, level);
         List<Word> lst = storage.get(categoryLevel);
