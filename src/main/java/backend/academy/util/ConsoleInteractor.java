@@ -3,7 +3,9 @@ package backend.academy.util;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import lombok.Getter;
@@ -22,6 +24,11 @@ public class ConsoleInteractor {
     public ConsoleInteractor() {
         bufferedReader = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
         bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out, StandardCharsets.UTF_8));
+    }
+
+    public ConsoleInteractor(InputStream inputStream, OutputStream outputStream) {
+        bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
+        bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
     }
 
     /**
