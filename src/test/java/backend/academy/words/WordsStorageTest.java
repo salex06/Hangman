@@ -5,6 +5,7 @@ import backend.academy.words.enums.Level;
 import backend.academy.words.implementations.WordsStorage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -72,6 +73,19 @@ class WordsStorageTest {
     @MethodSource("demoWordsSet2")
     void testIfStorageHaventTheValues(Word currentValue){
         assertThat(wordsStorage.storage().containsValue(currentValue)).isFalse();
+    }
+
+    @Test
+    @DisplayName("Ensure a getRandomWord works correctly")
+    void ensureGetRandomWordWorksCorrectly(){
+        Category category = Category.PROGRAMMING;
+        Level level = Level.EASY;
+
+        assertThat(wordsStorage.getRandomWord(category, level)).isInstanceOf(Word.class);
+
+        Word word = wordsStorage.getRandomWord(category, level);
+        assertThat(word.category()).isEqualTo(category);
+        assertThat(word.level()).isEqualTo(level);
     }
 
 }
