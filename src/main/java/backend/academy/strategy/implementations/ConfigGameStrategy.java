@@ -17,9 +17,13 @@ public class ConfigGameStrategy implements GameStrategy {
             }
             gameSession.NUMBER_OF_ATTEMPTS(numberOfAttempts);
         } else if (Objects.isNull(gameSession.answer())) {
-            String[] splitted = data.split(" ", 2);
+            String[] splitted = data.split(" ");
             String answer = splitted[0];
             String hint = splitted[1];
+            if (splitted.length != 2 || answer.isEmpty() || hint.isEmpty()) {
+                throw new IllegalArgumentException("incorrect string with the answer and hint");
+            }
+
             gameSession.answer(answer);
             gameSession.hint(hint);
             gameSession.attemptStringBuilder(new StringBuilder().append("-".repeat(answer.length())));
