@@ -31,30 +31,14 @@ public class ConsoleInteractor implements IOHandler {
     }
 
     public void writeMessage(String message) throws IOException {
-        outputStream.write(message.getBytes());
+        outputStream.print(message);
     }
 
     public String readMessage() throws IOException {
         return inputStream.nextLine();
     }
 
-    /**
-     * Flushes the bufferedWriter for displaying messages to the console
-     *
-     * @throws IOException if a buffer flushing error has occurred
-     */
-    public void flushBuffer() throws IOException {
-        outputStream.flush();
-    }
-
-    /**
-     * Clears the console of previous messages.
-     * It only works in consoles with ASCII code support
-     *
-     * @throws IOException if an output error has occurred
-     */
-    public void clearConsole() throws IOException {
+    public void clearScreen() throws IOException {
         writeMessage("\033[H\033[2J");
-        flushBuffer();
     }
 }

@@ -21,4 +21,11 @@ public interface IOHandler {
      * @throws IOException if an input error has occurred
      */
     String readMessage() throws IOException;
+
+    /**
+     * Clears the screen of previous messages.
+     *
+     * @throws IOException if an output error has occurred
+     */
+    void clearScreen() throws IOException;
 }
