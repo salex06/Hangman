@@ -38,67 +38,80 @@ public class GameOrchestrator implements Orchestrator {
         strategyManager = new StrategyManager();
     }
 
+    private String manageConfig(String dataToSendArg) throws IOException {
+        if (Objects.isNull(gameSession.NUMBER_OF_ATTEMPTS())) {
+            ioHandler.writeMessage("Select the maximum number of mistakes (at least 6): ");
+            return ioHandler.readMessage();
+        } else if (Objects.isNull(gameSession.answer())) {
+            ioHandler.writeMessage("Available categories");
+            for (int i = 0; i < Category.values().length; i++) {
+                ioHandler.writeMessage(
+                    "\n" + "[" + (i + 1) + "]"
+                        + Category.getCategory(String.valueOf(i + 1)).orElseThrow().name());
+            }
+            ioHandler.writeMessage("\nEnter the category number: ");
+            Category category =
+                Category.getCategory(ioHandler.readMessage()).orElseGet(Category::randomCategory);
+
+            ioHandler.writeMessage("Available difficulty levels of the word");
+            for (int i = 0; i < Level.values().length; i++) {
+                ioHandler.writeMessage(
+                    "\n" + "[" + (i + 1) + "]"
+                        + Level.getLevel(String.valueOf(i + 1)).orElseThrow().name());
+            }
+            ioHandler.writeMessage("\nEnter the level number: ");
+            Level level = Level.getLevel(ioHandler.readMessage()).orElseGet(Level::randomLevel);
+
+            Word word = wordsStorage.getRandomWord(category, level);
+            return word.value() + " " + word.hint();
+        }
+        return dataToSendArg;
+    }
+
+    private String managePlaying() throws IOException {
+        ioHandler.writeMessage("Maximum number of attempts: " + gameSession.NUMBER_OF_ATTEMPTS() + "\n");
+        ioHandler.writeMessage("Current number of attempts: " + gameSession.currentAttemptNumber() + "\n");
+
+        ioHandler.writeMessage(gallowsArtist.getCurrGallowsState(
+            gameSession.NUMBER_OF_ATTEMPTS(), gameSession.currentAttemptNumber()
+        ));
+
+        ioHandler.writeMessage("Word: " + gameSession.attemptStringBuilder().toString() + "\n");
+
+        if (gameSession.needHint()) {
+            ioHandler.writeMessage("Hint: " + gameSession.hint() + "\n");
+        } else {
+            ioHandler.writeMessage("[-]SHOW A HINT\n");
+        }
+
+        ioHandler.writeMessage("Enter a letter: ");
+
+        return ioHandler.readMessage().toLowerCase();
+    }
+
+    private void manageResult() throws IOException {
+        if (gameSession.gameResult().equals(String.valueOf("win"))) {
+            ioHandler.writeMessage("Congratulations, you have won!\n");
+        } else {
+            ioHandler.writeMessage("Unfortunately, you have lost!\n");
+        }
+        ioHandler.writeMessage("The answer: " + gameSession.answer() + "\n");
+    }
+
     public void run() throws IOException {
         while (!gameSession.gameIsFinished()) {
             try {
                 String dataToSend = "";
                 gameStrategy = strategyManager.manageStrategy(gameSession);
                 if (gameStrategy instanceof ConfigGameStrategy) {
-                    if (Objects.isNull(gameSession.NUMBER_OF_ATTEMPTS())) {
-                        ioHandler.writeMessage("Select the maximum number of mistakes (at least 6): ");
-                        dataToSend = ioHandler.readMessage();
-                    } else if (Objects.isNull(gameSession.answer())) {
-                        ioHandler.writeMessage("Available categories");
-                        for (int i = 0; i < Category.values().length; i++) {
-                            ioHandler.writeMessage(
-                                "\n" + "[" + (i + 1) + "]"
-                                    + Category.getCategory(String.valueOf(i + 1)).orElseThrow().name());
-                        }
-                        ioHandler.writeMessage("\nEnter the category number: ");
-                        Category category =
-                            Category.getCategory(ioHandler.readMessage()).orElseGet(Category::randomCategory);
-
-                        ioHandler.writeMessage("Available difficulty levels of the word");
-                        for (int i = 0; i < Level.values().length; i++) {
-                            ioHandler.writeMessage(
-                                "\n" + "[" + (i + 1) + "]"
-                                    + Level.getLevel(String.valueOf(i + 1)).orElseThrow().name());
-                        }
-                        ioHandler.writeMessage("\nEnter the level number: ");
-                        Level level = Level.getLevel(ioHandler.readMessage()).orElseGet(Level::randomLevel);
-
-                        Word word = wordsStorage.getRandomWord(category, level);
-                        dataToSend = word.value() + " " + word.hint();
-                    }
+                    dataToSend = manageConfig(dataToSend);
                     ioHandler.clearScreen();
                 } else if (gameStrategy instanceof PlayGameStrategy) {
-                    ioHandler.writeMessage("Maximum number of attempts: " + gameSession.NUMBER_OF_ATTEMPTS() + "\n");
-                    ioHandler.writeMessage("Current number of attempts: " + gameSession.currentAttemptNumber() + "\n");
-
-                    ioHandler.writeMessage(gallowsArtist.getCurrGallowsState(
-                        gameSession.NUMBER_OF_ATTEMPTS(), gameSession.currentAttemptNumber()
-                    ));
-
-                    ioHandler.writeMessage("Word: " + gameSession.attemptStringBuilder().toString() + "\n");
-
-                    if (gameSession.needHint()) {
-                        ioHandler.writeMessage("Hint: " + gameSession.hint() + "\n");
-                    } else {
-                        ioHandler.writeMessage("[-]SHOW A HINT\n");
-                    }
-
-                    ioHandler.writeMessage("Enter a letter: ");
-
-                    dataToSend = ioHandler.readMessage().toLowerCase();
+                    dataToSend = managePlaying();
                     ioHandler.clearScreen();
                 } else {
-                    if (gameSession.gameResult().equals(String.valueOf("win"))) {
-                        ioHandler.writeMessage("Congratulations, you have won!\n");
-                    } else {
-                        ioHandler.writeMessage("Unfortunately, you lost!\n");
-                    }
+                    manageResult();
                 }
-
                 gameStrategy.processStrategy(dataToSend, gameSession);
             } catch (IllegalArgumentException e) {
                 ioHandler.clearScreen();
