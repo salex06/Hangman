@@ -11,7 +11,7 @@ public class PlayGameStrategy implements GameStrategy {
         if (data.equals(String.valueOf("-"))) {
             gameSession.needHint(true);
         } else if (data.length() == 1) {
-            char letter = data.charAt(0);
+            char letter = data.toLowerCase().charAt(0);
             boolean wasUpdated = false;
             for (int i = 0; i < answer.length(); i++) {
                 if (answer.charAt(i) == letter) {
