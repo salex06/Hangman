@@ -28,16 +28,8 @@ public class PlayGameStrategy implements GameStrategy {
                 }
             }
 
-            String compareToAnswer = gameSession.attemptStringBuilder().toString();
-            boolean successfulCompare = true;
-            for (int i = 0; i < answer.length(); i++) {
-                if (compareToAnswer.charAt(i) != answer.charAt(i)) {
-                    successfulCompare = false;
-                    break;
-                }
-            }
-
-            if (successfulCompare) {
+            String currentStringBuilderState = gameSession.attemptStringBuilder().toString();
+            if (currentStringBuilderState.equals(answer)) {
                 gameSession.gameResult("win");
             }
         }
