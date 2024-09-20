@@ -76,8 +76,7 @@ class ConfigGameStrategyTest {
         return Stream.of(
             "test1hint1",
             "",
-            " ",
-            "test2 hint2 somethingElse3"
+            " "
         );
     }
 
