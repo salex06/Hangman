@@ -16,6 +16,7 @@ import backend.academy.words.enums.Category;
 import backend.academy.words.enums.Level;
 import backend.academy.words.implementations.WordsStorage;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,21 +45,21 @@ public class GameOrchestrator implements Orchestrator {
             return ioHandler.readMessage();
         } else if (Objects.isNull(gameSession.answer())) {
             ioHandler.writeMessage("Available categories");
-            for (int i = 0; i < Category.values().length; i++) {
-                ioHandler.writeMessage(
-                    "\n" + "[" + (i + 1) + "]"
-                        + Category.getCategory(String.valueOf(i + 1)).orElseThrow().name());
-            }
+            ioHandler.writeMessage(
+                Arrays.stream(Category.values()).map((i) ->
+                    ("\n" + "[" + (i.ordinal() + 1) + "]" + i.name())
+                ).toList().stream().reduce((a, b) -> (a + b)).orElseThrow()
+            );
             ioHandler.writeMessage("\nEnter the category number: ");
             Category category =
                 Category.getCategory(ioHandler.readMessage()).orElseGet(Category::randomCategory);
 
             ioHandler.writeMessage("Available difficulty levels of the word");
-            for (int i = 0; i < Level.values().length; i++) {
-                ioHandler.writeMessage(
-                    "\n" + "[" + (i + 1) + "]"
-                        + Level.getLevel(String.valueOf(i + 1)).orElseThrow().name());
-            }
+            ioHandler.writeMessage(
+                Arrays.stream(Level.values()).map((i) ->
+                    ("\n" + "[" + (i.ordinal() + 1) + "]" + i.name())
+                ).toList().stream().reduce((a, b) -> (a + b)).orElseThrow()
+            );
             ioHandler.writeMessage("\nEnter the level number: ");
             Level level = Level.getLevel(ioHandler.readMessage()).orElseGet(Level::randomLevel);
 
