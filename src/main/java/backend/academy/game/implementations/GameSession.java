@@ -3,6 +3,10 @@ package backend.academy.game.implementations;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * The model of the game session.
+ * This class contains all the information about the current session
+ */
 @Getter
 @Setter
 public class GameSession {
