@@ -24,8 +24,8 @@ import lombok.Setter;
 @Setter
 public class GameOrchestrator implements Orchestrator {
     private GameStrategy gameStrategy;
+    private IOHandler ioHandler;
     private final GameSession gameSession;
-    private final IOHandler ioHandler;
     private final IWordsStorage wordsStorage;
     private final IGallowsArtist gallowsArtist;
     private final IStrategyManager strategyManager;
