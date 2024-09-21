@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.Map;
@@ -17,30 +18,48 @@ class WordsStorageTest {
     WordsStorage wordsStorage;
 
     @BeforeEach
-    void setup(){
+    void setup() {
         wordsStorage = new WordsStorage();
     }
 
-    private static List<Map.Entry<Word, CategoryLevel>> demoWordsSet(){
+    private static List<Map.Entry<Word, CategoryLevel>> demoWordsSet() {
         Map<Word, CategoryLevel> map = Map.ofEntries(
-            Map.entry(new Word("musicEasy1", "hint", Category.MUSIC, Level.EASY), new CategoryLevel(Category.MUSIC, Level.EASY)),
-            Map.entry(new Word("musicEasy2", "hint", Category.MUSIC, Level.EASY), new CategoryLevel(Category.MUSIC, Level.EASY)),
-            Map.entry(new Word("musicMedium1", "hint", Category.MUSIC, Level.MEDIUM), new CategoryLevel(Category.MUSIC, Level.MEDIUM)),
-            Map.entry(new Word("musicMedium2", "hint", Category.MUSIC, Level.MEDIUM), new CategoryLevel(Category.MUSIC, Level.MEDIUM)),
-            Map.entry(new Word("musicHard1", "hint", Category.MUSIC, Level.HARD), new CategoryLevel(Category.MUSIC, Level.HARD)),
-            Map.entry(new Word("musicHard2", "hint", Category.MUSIC, Level.HARD), new CategoryLevel(Category.MUSIC, Level.HARD)),
-            Map.entry(new Word("programmingEasy1", "hint", Category.PROGRAMMING, Level.EASY), new CategoryLevel(Category.PROGRAMMING, Level.EASY)),
-            Map.entry(new Word("programmingEasy2", "hint", Category.PROGRAMMING, Level.EASY), new CategoryLevel(Category.PROGRAMMING, Level.EASY)),
-            Map.entry(new Word("programmingMedium1", "hint", Category.PROGRAMMING, Level.MEDIUM), new CategoryLevel(Category.PROGRAMMING, Level.MEDIUM)),
-            Map.entry(new Word("programmingMedium2", "hint", Category.PROGRAMMING, Level.MEDIUM), new CategoryLevel(Category.PROGRAMMING, Level.MEDIUM)),
-            Map.entry(new Word("programmingHard1", "hint", Category.PROGRAMMING, Level.HARD), new CategoryLevel(Category.PROGRAMMING, Level.HARD)),
-            Map.entry(new Word("programmingHard2", "hint", Category.PROGRAMMING, Level.HARD),new CategoryLevel(Category.PROGRAMMING, Level.HARD)),
-            Map.entry(new Word("sportEasy1", "hint", Category.SPORT, Level.EASY), new CategoryLevel(Category.SPORT, Level.EASY)),
-            Map.entry(new Word("sportEasy2", "hint", Category.SPORT, Level.EASY), new CategoryLevel(Category.SPORT, Level.EASY)),
-            Map.entry(new Word("sportMedium1", "hint", Category.SPORT, Level.MEDIUM), new CategoryLevel(Category.SPORT, Level.MEDIUM)),
-            Map.entry(new Word("sportMedium2", "hint", Category.SPORT, Level.MEDIUM), new CategoryLevel(Category.SPORT, Level.MEDIUM)),
-            Map.entry(new Word("sportHard1", "hint", Category.SPORT, Level.HARD), new CategoryLevel(Category.SPORT, Level.HARD)),
-            Map.entry(new Word("sportHard2", "hint", Category.SPORT, Level.HARD), new CategoryLevel(Category.SPORT, Level.EASY))
+            Map.entry(new Word("musicEasy1", "hint", Category.MUSIC, Level.EASY),
+                new CategoryLevel(Category.MUSIC, Level.EASY)),
+            Map.entry(new Word("musicEasy2", "hint", Category.MUSIC, Level.EASY),
+                new CategoryLevel(Category.MUSIC, Level.EASY)),
+            Map.entry(new Word("musicMedium1", "hint", Category.MUSIC, Level.MEDIUM),
+                new CategoryLevel(Category.MUSIC, Level.MEDIUM)),
+            Map.entry(new Word("musicMedium2", "hint", Category.MUSIC, Level.MEDIUM),
+                new CategoryLevel(Category.MUSIC, Level.MEDIUM)),
+            Map.entry(new Word("musicHard1", "hint", Category.MUSIC, Level.HARD),
+                new CategoryLevel(Category.MUSIC, Level.HARD)),
+            Map.entry(new Word("musicHard2", "hint", Category.MUSIC, Level.HARD),
+                new CategoryLevel(Category.MUSIC, Level.HARD)),
+            Map.entry(new Word("programmingEasy1", "hint", Category.PROGRAMMING, Level.EASY),
+                new CategoryLevel(Category.PROGRAMMING, Level.EASY)),
+            Map.entry(new Word("programmingEasy2", "hint", Category.PROGRAMMING, Level.EASY),
+                new CategoryLevel(Category.PROGRAMMING, Level.EASY)),
+            Map.entry(new Word("programmingMedium1", "hint", Category.PROGRAMMING, Level.MEDIUM),
+                new CategoryLevel(Category.PROGRAMMING, Level.MEDIUM)),
+            Map.entry(new Word("programmingMedium2", "hint", Category.PROGRAMMING, Level.MEDIUM),
+                new CategoryLevel(Category.PROGRAMMING, Level.MEDIUM)),
+            Map.entry(new Word("programmingHard1", "hint", Category.PROGRAMMING, Level.HARD),
+                new CategoryLevel(Category.PROGRAMMING, Level.HARD)),
+            Map.entry(new Word("programmingHard2", "hint", Category.PROGRAMMING, Level.HARD),
+                new CategoryLevel(Category.PROGRAMMING, Level.HARD)),
+            Map.entry(new Word("sportEasy1", "hint", Category.SPORT, Level.EASY),
+                new CategoryLevel(Category.SPORT, Level.EASY)),
+            Map.entry(new Word("sportEasy2", "hint", Category.SPORT, Level.EASY),
+                new CategoryLevel(Category.SPORT, Level.EASY)),
+            Map.entry(new Word("sportMedium1", "hint", Category.SPORT, Level.MEDIUM),
+                new CategoryLevel(Category.SPORT, Level.MEDIUM)),
+            Map.entry(new Word("sportMedium2", "hint", Category.SPORT, Level.MEDIUM),
+                new CategoryLevel(Category.SPORT, Level.MEDIUM)),
+            Map.entry(new Word("sportHard1", "hint", Category.SPORT, Level.HARD),
+                new CategoryLevel(Category.SPORT, Level.HARD)),
+            Map.entry(new Word("sportHard2", "hint", Category.SPORT, Level.HARD),
+                new CategoryLevel(Category.SPORT, Level.EASY))
         );
         return map.entrySet().stream().toList();
     }
@@ -58,8 +77,7 @@ class WordsStorageTest {
         assertThat(wordsStorage.storage().get(current.getValue())).contains(value);
     }
 
-
-    private static List<Word> demoWordsSet2(){
+    private static List<Word> demoWordsSet2() {
         List<Word> words = List.of(
             new Word("notAdded1", "hint", Category.MUSIC, Level.EASY),
             new Word("notAdded2", "hint", Category.PROGRAMMING, Level.MEDIUM),
@@ -71,13 +89,13 @@ class WordsStorageTest {
     @ParameterizedTest
     @DisplayName("Storage doesn't contain the words")
     @MethodSource("demoWordsSet2")
-    void testIfStorageHaventTheValues(Word currentValue){
+    void testIfStorageHaventTheValues(Word currentValue) {
         assertThat(wordsStorage.storage().containsValue(currentValue)).isFalse();
     }
 
     @Test
     @DisplayName("Ensure a getRandomWord works correctly")
-    void ensureGetRandomWordWorksCorrectly(){
+    void ensureGetRandomWordWorksCorrectly() {
         Category category = Category.PROGRAMMING;
         Level level = Level.EASY;
 
@@ -86,6 +104,15 @@ class WordsStorageTest {
         Word word = wordsStorage.getRandomWord(category, level);
         assertThat(word.category()).isEqualTo(category);
         assertThat(word.level()).isEqualTo(level);
+    }
+
+    @ParameterizedTest
+    @DisplayName("Ensure the addWord method returns false if word is blank")
+    @ValueSource(strings = {"", " ", "\n", "\t"})
+    void ensureAddWordReturnsFalseIfWordIsBlank(String wordValue) {
+        Word word = new Word(wordValue, "hint", Category.PROGRAMMING, Level.EASY);
+
+        assertThat(wordsStorage.addWord(Category.PROGRAMMING, Level.EASY, word)).isFalse();
     }
 
 }

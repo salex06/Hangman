@@ -58,6 +58,9 @@ public class WordsStorage implements IWordsStorage {
     }
 
     public boolean addWord(Category category, Level level, Word value) {
+        if (value.value().isBlank()) {
+            return false;
+        }
         CategoryLevel categoryLevel = new CategoryLevel(category, level);
         List<Word> lst = storage.get(categoryLevel);
         if (lst == null) {
