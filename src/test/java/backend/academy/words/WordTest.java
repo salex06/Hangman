@@ -6,7 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class WordTest {
     @ParameterizedTest
@@ -21,8 +22,21 @@ class WordTest {
 
     @Test
     @DisplayName("Ensure the toString method works correctly")
-    void ensureToStringWorksCorrectly(){
+    void ensureToStringWorksCorrectly() {
         Word word = new Word("word", "hint", Category.MUSIC, Level.EASY);
         assertEquals("word", word.toString());
+    }
+
+    @Test
+    @DisplayName("Ensure the equals method works correctly")
+    void ensureEqualsMethodWorksCorrectly() {
+        Word word1 = new Word("word", "hint", Category.MUSIC, Level.EASY);
+        Word word2 = new Word("word", "hint", Category.MUSIC, Level.EASY);
+
+        assertEquals(word1, word2);
+
+        Word word3 = new Word("anotherWord", "hint", Category.MUSIC, Level.EASY);
+
+        assertNotEquals(word2, word3);
     }
 }
