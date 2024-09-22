@@ -2,6 +2,7 @@ package backend.academy.util.implementations;
 
 import backend.academy.util.IGallowsArtist;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * The GallowsArtist class works with a graphical representation of the gallows
@@ -44,11 +45,8 @@ public class GallowsArtist implements IGallowsArtist {
             //Drawing a person
             String currentStepOfDrawingMan = steps.get(currentAttemptNumber - countExtraPiecesOfRope);
             currentGallowsState.append(currentStepOfDrawingMan);
-            for (int i = 0; i < currentStepOfDrawingMan.length(); i++) {
-                if (currentStepOfDrawingMan.charAt(i) == '\n') {
-                    countHeightOfGallows++;
-                }
-            }
+            //since the separator at the end of the line is ignored, the -1 is not required.
+            countHeightOfGallows += (int) (Stream.of(currentStepOfDrawingMan.split("\n")).count());
         }
         //At the end add the remaining parts of the gallows
         while (countHeightOfGallows != numberOfAttempts) {
