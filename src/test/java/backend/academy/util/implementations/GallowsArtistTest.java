@@ -1,6 +1,5 @@
-package backend.academy.game;
+package backend.academy.util.implementations;
 
-import backend.academy.util.implementations.GallowsArtist;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
