@@ -120,6 +120,7 @@ public class GameOrchestrator implements Orchestrator {
                 ioHandler.writeMessage("Incorrect input: " + e.getMessage() + "\n");
             } catch (IOException e) {
                 Logger.log.error("Error: {}", e.getMessage());
+                break;
             }
         }
     }
