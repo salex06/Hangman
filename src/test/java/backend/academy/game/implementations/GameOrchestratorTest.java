@@ -2,14 +2,14 @@ package backend.academy.game.implementations;
 
 import backend.academy.util.IOHandler;
 import backend.academy.util.implementations.ConsoleInteractor;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.NoSuchElementException;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class GameOrchestratorTest {
     GameOrchestrator gameOrchestrator = new GameOrchestrator();
@@ -19,7 +19,7 @@ class GameOrchestratorTest {
 
     @Test
     @DisplayName("Ensure the game configuration stage completed successfully")
-    void ensureGameConfigCompletedSuccessfully() throws IOException {
+    void ensureGameConfigCompletedSuccessfully(){
         byteArrayInputStream = new ByteArrayInputStream("8\n1\n2\n".getBytes());
         byteArrayOutputStream = new ByteArrayOutputStream();
         ioHandler = new ConsoleInteractor(byteArrayInputStream, byteArrayOutputStream);
@@ -27,7 +27,9 @@ class GameOrchestratorTest {
 
         try {
             gameOrchestrator.run();
-        }catch(IOException | NoSuchElementException _){}
+        } catch (IOException | NoSuchElementException _) {
+            //There is no more data in the input stream
+        }
 
         assertNotNull(gameOrchestrator.gameSession().NUMBER_OF_ATTEMPTS());
         assertNotNull(gameOrchestrator.gameSession().answer());
@@ -36,7 +38,7 @@ class GameOrchestratorTest {
 
     @Test
     @DisplayName("Ensure the game playing stage completed successfully (win)")
-    void ensureGamePlayingCompletedSuccessfully_win(){
+    void ensureGamePlayingCompletedSuccessfully_win() {
         gameOrchestrator.gameSession().NUMBER_OF_ATTEMPTS(6);
         gameOrchestrator.gameSession().answer("demo");
         gameOrchestrator.gameSession().hint("hint");
@@ -48,7 +50,9 @@ class GameOrchestratorTest {
 
         try {
             gameOrchestrator.run();
-        }catch(IOException | NoSuchElementException _){}
+        } catch (IOException | NoSuchElementException _) {
+            //There is no more data in the input stream
+        }
 
         assertThat(gameOrchestrator.gameSession().gameResult()).isEqualTo("win");
         assertThat(gameOrchestrator.gameSession().currentAttemptNumber()).isEqualTo(1);
@@ -56,7 +60,7 @@ class GameOrchestratorTest {
 
     @Test
     @DisplayName("Ensure the game playing stage completed successfully (lose)")
-    void ensureGamePlayingCompletedSuccessfully_lose(){
+    void ensureGamePlayingCompletedSuccessfully_lose() {
         gameOrchestrator.gameSession().NUMBER_OF_ATTEMPTS(6);
         gameOrchestrator.gameSession().answer("demo");
         gameOrchestrator.gameSession().hint("hint");
@@ -68,7 +72,9 @@ class GameOrchestratorTest {
 
         try {
             gameOrchestrator.run();
-        }catch(IOException | NoSuchElementException _){}
+        } catch (IOException | NoSuchElementException _) {
+            //There is no more data in the input stream
+        }
 
         assertThat(gameOrchestrator.gameSession().gameResult()).isEqualTo("lose");
         assertThat(gameOrchestrator.gameSession().currentAttemptNumber()).isEqualTo(6);
@@ -76,7 +82,7 @@ class GameOrchestratorTest {
 
     @Test
     @DisplayName("Ensure the game result stage completed successfully (win)")
-    void ensureGameResultStageCompletedSuccessfully_win(){
+    void ensureGameResultStageCompletedSuccessfully_win() {
         gameOrchestrator.gameSession().NUMBER_OF_ATTEMPTS(6);
         gameOrchestrator.gameSession().answer("demo");
         gameOrchestrator.gameSession().hint("hint");
@@ -84,14 +90,16 @@ class GameOrchestratorTest {
 
         try {
             gameOrchestrator.run();
-        }catch(IOException | NoSuchElementException _){}
+        } catch (IOException | NoSuchElementException _) {
+            //There is no more data in the input stream
+        }
 
         assertThat(gameOrchestrator.gameSession().gameIsFinished()).isTrue();
     }
 
     @Test
     @DisplayName("Ensure the game result stage completed successfully (lose)")
-    void ensureGameResultStageCompletedSuccessfully_lose(){
+    void ensureGameResultStageCompletedSuccessfully_lose() {
         gameOrchestrator.gameSession().NUMBER_OF_ATTEMPTS(6);
         gameOrchestrator.gameSession().answer("demo");
         gameOrchestrator.gameSession().hint("hint");
@@ -99,7 +107,9 @@ class GameOrchestratorTest {
 
         try {
             gameOrchestrator.run();
-        }catch(IOException | NoSuchElementException _){}
+        } catch (IOException | NoSuchElementException _) {
+            //There is no more data in the input stream
+        }
 
         assertThat(gameOrchestrator.gameSession().gameIsFinished()).isTrue();
     }
