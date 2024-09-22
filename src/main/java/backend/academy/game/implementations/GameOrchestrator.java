@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 @Getter
 @Setter
@@ -117,7 +118,13 @@ public class GameOrchestrator implements Orchestrator {
             } catch (IllegalArgumentException e) {
                 ioHandler.clearScreen();
                 ioHandler.writeMessage("Incorrect input: " + e.getMessage() + "\n");
+            } catch (IOException e) {
+                Logger.log.error("Error: {}", e.getMessage());
             }
         }
+    }
+
+    @Slf4j
+    private static class Logger {
     }
 }
