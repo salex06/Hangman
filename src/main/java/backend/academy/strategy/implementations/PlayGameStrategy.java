@@ -2,6 +2,9 @@ package backend.academy.strategy.implementations;
 
 import backend.academy.game.implementations.GameSession;
 import backend.academy.strategy.GameStrategy;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PlayGameStrategy implements GameStrategy {
     @Override
@@ -12,12 +15,22 @@ public class PlayGameStrategy implements GameStrategy {
             gameSession.needHint(true);
         } else if (data.length() == 1 && !data.isBlank()) {
             char letter = data.toLowerCase().charAt(0);
+
+            AtomicInteger indexLetter = new AtomicInteger();
             boolean wasUpdated = false;
-            for (int i = 0; i < answer.length(); i++) {
-                if (answer.charAt(i) == letter) {
-                    wasUpdated = true;
-                    gameSession.attemptStringBuilder().setCharAt(i, letter);
-                }
+            List<Map.Entry<Character, Integer>> matchedLetters =
+                answer.chars()
+                    .mapToObj((currentLetter) ->
+                        Map.entry((char) currentLetter, indexLetter.getAndIncrement())
+                    ).filter(currentLetter -> (
+                        currentLetter.getKey() == letter
+                    )).toList();
+
+            if (!matchedLetters.isEmpty()) {
+                wasUpdated = true;
+                matchedLetters
+                    .forEach(currentPair -> gameSession.attemptStringBuilder().setCharAt(currentPair.getValue(),
+                        currentPair.getKey()));
             }
 
             if (!wasUpdated) {
